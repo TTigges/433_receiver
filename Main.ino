@@ -33,7 +33,7 @@ void setup() {
   digitalWrite(CC1101_CS, HIGH);
 
 
-  Serial.begin(115200);
+  Serial.begin(19200);
 
 
 
