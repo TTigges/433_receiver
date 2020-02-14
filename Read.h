@@ -670,7 +670,7 @@ int ReceiveMessage()
   //digitalWrite(DEBUGPIN,LOW);
 
   CD_Width = micros() - CD_Width;
-  if ((CD_Width >= 9500) && (CD_Width <= 9900))
+  if ((CD_Width >= 10100) && (CD_Width <= 10300))
   {
     
 
