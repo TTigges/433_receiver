@@ -135,7 +135,7 @@ void loop() {
   { //looks like some data coming in...
     
     ByteCount = ReceiveMessage();
-    //Serial.println(ByteCount);
+    Serial.print("ByteCount: ");Serial.println(ByteCount);
     if (ByteCount == 9)
     {
       
