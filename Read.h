@@ -271,7 +271,7 @@ void DecodeTPMS()
       crctable[divident] = currByte;
       Serial.print("0x");
       if (currByte < 16)
-         Serial.print("0");
+        //Serial.print("0");
       Serial.print(currByte,HEX);
       Serial.print(", ");
     }
