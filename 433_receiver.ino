@@ -140,15 +140,16 @@ void loop() {
     {
       
       
-      crcResult = Compute_CRC8(ByteCount);
+      //crcResult = Compute_CRC8(ByteCount);
+      crcResult = Compute_XOR(); // ToDo: Remove CRC
 
 
       if (crcResult != 0)
       {
-//        Serial.print(F("CRC: "));
-//        Serial.println(crcResult, HEX);
-//        Serial.println(F("CRC Check failed"));
-        //PrintData(BitCount);
+        Serial.print(F("CRC: "));
+        Serial.println(crcResult, HEX);
+        Serial.println(F("CRC Check failed"));
+        PrintData(BitCount);
       }
       else
       {

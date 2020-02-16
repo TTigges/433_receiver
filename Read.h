@@ -299,6 +299,13 @@ byte Compute_CRC8( int bcount)
   return crc;
 }
 
+byte Compute_XOR()
+{
+  int checksum;
+  checksum = RXBytes[0]^RXBytes[1]^RXBytes[2]^RXBytes[3]^RXBytes[4]^RXBytes[5]^RXBytes[6]^RXBytes[7]^RXBytes[8];
+  return checksum;
+}
+
 
 void ClearRXBuffer()
 {
