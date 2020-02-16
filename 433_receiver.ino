@@ -135,11 +135,7 @@ void loop() {
   { //looks like some data coming in...
     
     ByteCount = ReceiveMessage();
-    Serial.print("ByteCount: ");Serial.println(ByteCount);
-    Serial.print("Timings index = ");
-    Serial.println(TimingsIndex);
-    Serial.print("CD Width = ");
-    Serial.println(CD_Width);
+    //Serial.println(ByteCount);
     if (ByteCount == 9)
     {
       

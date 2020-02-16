@@ -126,6 +126,11 @@ boolean Check_TPMS_Timeouts()
   for (i = 0; i < 4; i++)
   {
     #ifdef SHOWDEGUGINFO
+      if((TPMS[i].TPMS_ID) !=0)  //added by jarock
+      {                                //added by jarock
+        Serial.print(TPMS[i].TPMS_ID, HEX);
+        Serial.print(F("   "));
+      }                            //added by jarock
       Serial.print(TPMS[i].TPMS_ID, HEX);
       Serial.print(F("   "));
     #endif
@@ -614,7 +619,13 @@ int ValidateTimings()
   }
 
   bcount = ManchesterDecode(ManchesterStartPos);
-  if (bcount == 9)
+
+     #ifdef SHOWDEGUGINFO      //jayrock
+       Serial.print("bcount = ");//jayrock
+       Serial.println(bcount);//jayrock
+    #endif 
+
+    if (bcount == 9)
   {
      return 9;
   }
@@ -670,7 +681,7 @@ int ReceiveMessage()
   //digitalWrite(DEBUGPIN,LOW);
 
   CD_Width = micros() - CD_Width;
-  if ((CD_Width >= 10100) && (CD_Width <= 10300))
+  if ((CD_Width >= 9500) && (CD_Width <= 9900))
   {
     
 
