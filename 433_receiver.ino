@@ -78,9 +78,6 @@ void setup() {
 
 
 
-  Serial.println(F("SSD1306 initialised OK"));
-
-
   digitalWrite(LED_RX, LED_ON);
   LEDState = HIGH;
 
@@ -135,11 +132,13 @@ void loop() {
   { //looks like some data coming in...
     
     ByteCount = ReceiveMessage();
-    Serial.println(ByteCount);
-    Serial.print("Timings index = ");
-    Serial.println(TimingsIndex);
-    Serial.print("CD Width = ");
-    Serial.println(CD_Width);
+    //Serial.println(ByteCount);
+    if (CD_Width > 2000) {
+      Serial.print("Timings index = ");
+      Serial.println(TimingsIndex);
+      Serial.print("CD Width = ");
+      Serial.println(CD_Width);
+    }
     if (ByteCount == 9)
     {
       

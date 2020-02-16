@@ -128,18 +128,18 @@ boolean Check_TPMS_Timeouts()
     #ifdef SHOWDEGUGINFO
       if((TPMS[i].TPMS_ID) !=0)  //added by jarock
       {                                //added by jarock
-        Serial.print(TPMS[i].TPMS_ID, HEX);
-        Serial.print(F("   "));
+        //Serial.print(TPMS[i].TPMS_ID, HEX);
+        //Serial.print(F("   "));
       }                            //added by jarock
-      Serial.print(TPMS[i].TPMS_ID, HEX);
-      Serial.print(F("   "));
+      //Serial.print(TPMS[i].TPMS_ID, HEX);
+      //Serial.print(F("   "));
     #endif
 
     if ((TPMS[i].TPMS_ID != 0) && (millis() - TPMS[i].lastupdated > TPMS_TIMEOUT))
     {
       #ifdef SHOWDEGUGINFO
-         Serial.print(F("Clearing ID "));
-         Serial.println(TPMS[i].TPMS_ID, HEX);
+         //Serial.print(F("Clearing ID "));
+         //Serial.println(TPMS[i].TPMS_ID, HEX);
       #endif
       ClearTPMSData(i);
       ret = true;
@@ -153,39 +153,25 @@ void DecodeTPMS()
 {
   int i;
   unsigned long id = 0;
-  unsigned int status, pressure1, pressure2, temp;
+  unsigned int status, pressure, temp;
   float realpressure;
   float realtemp;
   bool IDFound = false;
   int prefindex;
 
-  for (i = 5; i >= 3; i--)
+  for (i = 0; i <= 3; i++)
   {
-    id = id << 8;
     id = id + RXBytes[i];
-
   }
-
-  // id = (unsigned)RXBytes[0] << 24 | RXBytes[1] << 16 | RXBytes[2] << 8 | RXBytes[3];
 
   status = RXBytes[0] >> 2;
 
-  pressure1 = (RXBytes[0] & 0x03)  << 8 | RXBytes[1];
+  pressure = RXBytes[5];
 
-  temp = RXBytes[2];
+  temp = RXBytes[6];
 
-  pressure2 = pressure1;
-
-
-
-  if (pressure1 != pressure2)
-  {
-    Serial.println(F("Pressure check mis-match"));
-    return;
-  }
-
-  realpressure = pressure1 * 0.75;
-  realtemp = temp - 30.0;
+  realpressure = (pressure * 1.38) / 100;
+  realtemp = temp - 50;
 
 #ifdef SHOWDEGUGINFO
   Serial.print(F("ID: "));
@@ -698,7 +684,7 @@ int ReceiveMessage()
   //digitalWrite(DEBUGPIN,LOW);
 
   CD_Width = micros() - CD_Width;
-  if ((CD_Width >= 9500) && (CD_Width <= 9900))
+  if ((CD_Width >= 10100) && (CD_Width <= 10300))
   {
     
 
