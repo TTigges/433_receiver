@@ -311,7 +311,6 @@ byte Compute_XOR()
   Serial.print(RXBytes[6],HEX);
   Serial.print(RXBytes[7],HEX);
   Serial.print(RXBytes[8],HEX);
-      Serial.print(currByte,HEX);
   checksum = RXBytes[0]^RXBytes[1]^RXBytes[2]^RXBytes[3]^RXBytes[4]^RXBytes[5]^RXBytes[6]^RXBytes[7]^RXBytes[8];
   Serial.println(" ");
   return checksum;
